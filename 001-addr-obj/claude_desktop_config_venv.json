@@ -1,0 +1,12 @@
+{
+  "mcpServers": {
+    "palo-alto": {
+      "command": "C:\\PATH-TO-FILE\\palo-mcp\\001-addr-obj\\venv\\Scripts\\python.exe",
+      "args": ["C:\\PATH-TO-FILE\\palo-mcp\\001-addr-obj\\palo-mcp-addr-obj.py"],
+      "env": {
+        "FIREWALL_IP": "",
+        "FIREWALL_API_KEY": ""
+      }
+    }
+  }
+}
