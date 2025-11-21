@@ -1,0 +1,1 @@
+Blog post: https://jeremypageitcompany.com/posts/palo/posts/palo_mcp_setup/
