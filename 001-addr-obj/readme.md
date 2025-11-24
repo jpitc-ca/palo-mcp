@@ -1,1 +1,1 @@
-Blog post: https://jeremypageitcompany.com/posts/palo/posts/palo_mcp_setup/
+Blog post: https://jpitc.ca/posts/palo/posts/palo_mcp_setup/

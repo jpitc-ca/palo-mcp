@@ -1,2 +1,2 @@
 Blog post:
-- 001-addr-obj: https://jeremypageitcompany.com/posts/palo/posts/palo_mcp_setup/
+- 001-addr-obj: https://jpitc.ca/posts/palo/posts/palo_mcp_setup/
