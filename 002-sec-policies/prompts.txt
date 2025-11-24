@@ -1,0 +1,22 @@
+Create a security policy on my palo alto firewall:
+name: test_rule_google
+source_zone: trust
+destination_zone: untrust
+source_address: adr_10.0.0.2-32
+destination_address: google_8.8.8.8-32
+application: dns, dns-over-https
+action: allow
+---
+On my Palo Alto firewall, can you modify the rule: test_rule_google, to add the application: ssh
+
+---
+On my Palo Alto firewall, can you show me all the security rules that allow SSH from source_zone: trust to destination_zone: untrust
+
+---
+On my Palo Alto firewall, can you delete the rule: test_rule_google
+
+---
+On my Palo Alto firewall, can you run the command: show system info
+
+---
+On my Palo Alto firewall, can you run the command: request restart system
