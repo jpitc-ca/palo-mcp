@@ -1,0 +1,3 @@
+fastmcp
+pan-os-python
+setuptools

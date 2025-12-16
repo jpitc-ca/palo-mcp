@@ -1,0 +1,56 @@
+services:
+  n8n:
+    image: n8nio/n8n:latest
+    container_name: n8n
+    ports:
+      - "5678:5678"
+    environment:
+      - GENERIC_TIMEZONE=America/Toronto
+      - N8N_BASIC_AUTH_ACTIVE=false
+      - N8N_EDITOR_BASE_URL=https://${CLOUDFLARE_FQDN}/
+      - WEBHOOK_URL=https://${CLOUDFLARE_FQDN}/
+      - N8N_PROXY_HOPS=1
+      - N8N_PROTOCOL=http
+      - N8N_HOST=${CLOUDFLARE_FQDN}
+      - NODE_ENV=production
+      - N8N_SECURE_COOKIE=false
+    volumes:
+      - n8n_data:/home/node/.n8n
+      - /var/run/docker.sock:/var/run/docker.sock
+    depends_on:
+      - paloalto-mcp-advanced
+    networks:
+      - mcp-network
+
+  paloalto-mcp-advanced:
+    container_name: paloalto-mcp-advanced
+    build:
+      context: ./paloalto-mcp-advanced
+      dockerfile: Dockerfile
+    expose:
+      - "8000"
+    environment:
+      - PYTHONUNBUFFERED=1
+      - FIREWALL_IP=${FIREWALL_IP_ADVANCED}
+      - FIREWALL_API_KEY=${FIREWALL_API_KEY_ADVANCED}
+    networks:
+      - mcp-network
+
+  cloudflare-tunnel:
+    image: cloudflare/cloudflared:latest
+    container_name: cloudflare-tunnel
+    command: tunnel run 
+    environment:
+      - TUNNEL_TOKEN=${CLOUDFLARE_TUNNEL_TOKEN}
+    networks:
+      - mcp-network
+    depends_on:
+      - n8n
+    restart: unless-stopped
+
+volumes:
+  n8n_data:
+
+networks:
+  mcp-network:
+    driver: bridge
